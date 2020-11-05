@@ -32,6 +32,7 @@
         5. In the Maven box, enter "M3"
         6. Make syre Install automatically is clicked. 
         7. Save
- 
-
     - configure the build to use Maven and Make the index file
+        a. click New Item
+        b. enter an item name of the "mavenproject" in the box provided.
+        
