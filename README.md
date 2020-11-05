@@ -1,4 +1,4 @@
-# Jenkins Installation
+# Jenkins Installation:
     - Install java and Jenkins 
 1.  Install java-1.8.0-openjdk-level:
     - sudo yum install -y java-1.8.0-openjdk-devel
@@ -16,3 +16,8 @@
 7. In a new browser tab, navigate to http://<PUBLIC_IP_ADDRESS>:8080, replacing <PUBLIC_IP_ADDRESS> with the IP address of the cloud server provided on the lab page.
 8. We'll be taken to an Unlock Jenkins page telling us we need to locate the password. In the terminal, run:
     - sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# Builds and Build Management: 
+1. Building in Jenkins
+- Create a folder named Test
+- Create a user test job that saves it output in a file "user_test.txt"S
