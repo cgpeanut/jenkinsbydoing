@@ -19,4 +19,6 @@
 # Builds and Build Management: 
 1. Building in Jenkins
 - Create a folder named Test
+    - Dashboard -> new item -> Test -> folder 
+    - Inside Test Folder -> new item -> User_test -> freestyle project -> (Build) -> Execute shell -> uname -a && whoami > user_test.txt -> build now
 - Create a user test job that saves it output in a file "user_test.txt"S
