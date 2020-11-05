@@ -33,6 +33,10 @@
         6. Make syre Install automatically is clicked. 
         7. Save
     - configure the build to use Maven and Make the index file
-        a. click New Item
-        b. enter an item name of the "mavenproject" in the box provided.
-        
+        1. click New Item
+        2. enter an item name of the "mavenproject" in the box provided.
+        3. select freesytle project
+        4. click OK
+        5. click the source code management tab at the top of the screen.
+        6. select the option for the Git repository. 
+        7. copy the Git repository link cgpeanut/
