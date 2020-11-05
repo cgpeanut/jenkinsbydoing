@@ -21,4 +21,17 @@
 - Create a folder named Test
     - Dashboard -> new item -> Test -> folder 
     - Inside Test Folder -> new item -> User_test -> freestyle project -> (Build) -> Execute shell -> uname -a && whoami > user_test.txt -> build now
-- Create a user test job that saves it output in a file "user_test.txt"S
+- Create a user test job that saves it output in a file "user_test.txt" 
+    - workspace -> user_test.txt
+2. Building from SCM
+    - configure Maven installer
+        a. login to Jenkins server
+        b. click Manage Jenkins
+        c. click Global Tool Configuration
+        d. Under Maven Installations, click Add Maven
+        e. In the Maven box, enter "M3"
+        f. Make syre Install automatically is clicked. 
+        g. Save
+ 
+
+    - configure the build to use Maven and Make the index file
