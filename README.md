@@ -39,4 +39,18 @@
         4. click OK
         5. click the source code management tab at the top of the screen.
         6. select the option for the Git repository. 
-        7. copy the Git repository link cgpeanut/
+        7. copy the Git repository link https://github.com/cgpeanut/jenkinsbydoing.git and enter it into the Repository URL box.
+        8. click the Build tab at the top of the screen
+        9. click add a Build Step and select the invoke top-level Maven Targets option.
+        10. Under Maven Version, select M3
+        11. In the Goals box, enter "clean package".
+        12. Click Add build step and select the Execute shell option. 
+        13. In the command windows, enter "bin/makeindex".
+        14. click Add post-build action and select the Archive the artifatcs option.
+        15. Inside the Archive the artifacts box, click Advanced.
+        16. Check the option for the Fingerprint all archieved artifacts.
+        17. In the files to archive box, enter "index.jsp"
+        18. click Save
+        19. click Build Now
+        20. Refresh window and click View link next to index.jsp. Verify the contents of the index.jsp file. 
+
