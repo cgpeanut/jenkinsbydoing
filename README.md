@@ -30,7 +30,7 @@
         3. click Global Tool Configuration
         4. Under Maven Installations, click Add Maven
         5. In the Maven box, enter "M3"
-        6. Make syre Install automatically is clicked. 
+        6. Make sure Install automatically is clicked. 
         7. Save
     - configure the build to use Maven and Make the index file
         1. click New Item
@@ -53,4 +53,117 @@
         18. click Save
         19. click Build Now
         20. Refresh window and click View link next to index.jsp. Verify the contents of the index.jsp file. 
+# Distributing a Build (adding Build Node)
+    - configure Maven to build project pulled from SCM - configure a slave node to builkd project instead of master node. 
+        1. In slave machine, su as root  vim /etc/passwd
+        2. In the last line in the file (beginning with jenkins), change /bin/false to /bin/bash to allow the jenkins user a shell login.
+        3. Save
+        4. Change the password for the jenkins user: passwd jenkins
+        5. switch to jenkins: su jenkins
+        6. change dir: cd ~
+        7. Generate public/private RSA key pair: ssh-keygen
+        8. login to slave server
+        9. become root: sudo su
+       10. create a jenkins user: useradd jenkins
+       11. create passwd: passwd jenkins
+       12. open the sudoers file: visudo
+       13. In the Defaults section, mbeneath root, add: jenkins ALL=(ALL) NOPASSWD: ALL
+       14. save and exit
+       15. exit root
+       16. see who you're login as: whoami 
+       17. switch to jenkins: su jenkins
+       18. change dir: cd ~
+       19. As the jenkins user on the master server, copy the jenkins user's ssh keys to the slave server:
+       20. cat ./.ssh/id_rsa
 
+# Run the Maven Build on the Remote Agent
+
+In a new browser tab, navigate to http://<JENKINS_MASTER_SERVER_PUBLIC_IP>:8080.
+
+Log in to Jenkins using the following credentials:
+
+Click Manage Jenkins in the left-hand menu.
+
+Click Manage Nodes and Clouds.
+
+Click New Node.
+
+Give it a name of slave1.
+
+Select Permanent Agent.
+
+Click OK.
+
+For Remote root directory, enter /home/jenkins.
+
+For Labels, enter slave1.
+
+For Host, enter the slave server's public IP address.
+
+Next to Credentials, click Add > Jenkins.
+
+Set the following values:
+
+Kind: SSH Username with private key
+Username: jenkins
+Private Key: Enter directly
+Copy the entire RSA key in the terminal (from dashes to dashes) and paste it into the Key window
+ID: jkey
+Description: jenkinsuser
+Click Add.
+
+Set Credentials to jenkins (jenkinsuser).
+
+Click Save.
+
+In the upper-left corner, click Jenkins > New Item.
+
+Enter an item name of mavenproject.
+
+Select Freestyle project.
+
+Click OK.
+
+Set the following values:
+
+General
+Restrict where this project can be run: Check
+Label Expression: slave1
+Source Code Management
+Git: Check
+Repository URL: https://github.com/linuxacademy/content-cje-prebuild.git
+Click outside the box to make sure the red text goes away.
+Build
+Click Add build step > Invoke top-level Maven targets.
+Goals: clean package
+Click Add build step > Execute shell.
+Command: bin/makeindex
+Post-build Actions
+Click Add post-build action > Archive the artifacts.
+Files to archive: index.jsp
+Click Advanced....
+Fingerprint all archived artifacts: Check
+Leave other default boxes checked.
+Click Save.
+
+In the upper-left corner, click Jenkins > Manage Jenkins > Global Tool Configuration.
+
+In the Maven section, click Add Maven.
+
+Give it the name M3.
+
+Click Save.
+
+In the upper-left corner, click Jenkins.
+
+Click mavenproject.
+
+Click Configure in the left-hand menu.
+
+In the Build section, set Maven Version to M3.
+
+Click Save.
+
+Click Build Now in the left-hand menu.
+
+Once the build starts, click the dropdown icon next to #1 and select Console Output and observe its progress.
